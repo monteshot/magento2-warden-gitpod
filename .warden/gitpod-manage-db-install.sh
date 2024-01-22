@@ -7,7 +7,7 @@ answer="${answer:-y}"
 if [[ $answer == "y" || $answer == "Y" ]]; then
     echo "Installing the Magento to the DB..."
     clear_url=$(gp url | awk -F"//" {'print $2'}) && url=$url;
-    warden env exec php-fpm bin/magento setup:install \
+    warden env exec -e $clear_url="$clear_url" php-fpm bin/magento setup:install \
                             --base-url=$clear_url \
                             --db-host=db \
                             --db-name=magento \
