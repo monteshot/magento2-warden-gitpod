@@ -15,6 +15,7 @@ if [ -f "$file_path" ]; then
     sed -i "s|$site1|443-$clear_url|" "$file_path"
     echo "Modifying complete(env.php)."
     warden env exec php-fpm php bin/magento a:c:i
+    warden env exec php-fpm php bin/magento mo:d Magento_TwoFactorAuth Magento_AdminAdobeImsTwoFactorAuth
     warden env exec php-fpm php bin/magento s:up
     warden env exec php-fpm php bin/magento cache:enable
     warden env exec php-fpm php bin/magento d:m:se developer
