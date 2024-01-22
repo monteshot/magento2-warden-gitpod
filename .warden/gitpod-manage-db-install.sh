@@ -41,10 +41,10 @@ if [[ $answer == "y" || $answer == "Y" ]]; then
                             --page-cache-redis-db=1 \
                             --page-cache-redis-port=6379
 
-   warden env exec -e TRAEFIK_DOMAIN="TRAEFIK_DOMAIN" php-fpm bin/magento config:set --lock-env web/unsecure/base_url \
+   warden env exec -e TRAEFIK_DOMAIN="$TRAEFIK_DOMAIN" php-fpm bin/magento config:set --lock-env web/unsecure/base_url \
          "https://${TRAEFIK_DOMAIN}/"
 
-   warden env exec -e TRAEFIK_DOMAIN="TRAEFIK_DOMAIN" php-fpm bin/magento config:set --lock-env web/secure/base_url \
+   warden env exec -e TRAEFIK_DOMAIN="$TRAEFIK_DOMAIN" php-fpm bin/magento config:set --lock-env web/secure/base_url \
          "https://${TRAEFIK_DOMAIN}/"
    warden env exec php-fpm bin/magento config:set --lock-env web/secure/offloader_header X-Forwarded-Proto
    warden env exec php-fpm bin/magento config:set --lock-env web/secure/use_in_frontend 1
