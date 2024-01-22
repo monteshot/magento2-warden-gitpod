@@ -2,8 +2,6 @@
 
 clear_url=$(gp url | awk -F"//" {'print $2'}) && url=$url;
 cp -v $GITPOD_REPO_ROOTS/.warden/.gitpod.env $GITPOD_REPO_ROOTS/.env
-cp -v $GITPOD_REPO_ROOTS/.warden/gitpod.env.php $GITPOD_REPO_ROOTS/app/etc/env.php
-cp -v $GITPOD_REPO_ROOTS/.warden/gitpod.config.php $GITPOD_REPO_ROOTS/app/etc/config.php
 
 # Path to .env
 file_path="$GITPOD_REPO_ROOTS/.env"
