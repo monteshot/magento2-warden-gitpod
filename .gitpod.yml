@@ -25,7 +25,7 @@ tasks:
       bash $GITPOD_REPO_ROOTS/.warden/gitpod-manage-warden.sh
       bash $GITPOD_REPO_ROOTS/.warden/gitpod-manage-traefik.sh
       bash $GITPOD_REPO_ROOTS/.warden/gitpod-manage-mailhog.sh
-      warden env exec -e COMPOSER_AUTH="$AUTH_JSON" -e MAGENTO_VERSION="$MAGENTO_VERSION" -e php-fpm composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=$MAGENTO_VERSION /var/www/html/tmp/
+      warden env exec -e COMPOSER_AUTH="$AUTH_JSON" -e MAGENTO_VERSION="$MAGENTO_VERSION" php-fpm composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=$MAGENTO_VERSION /var/www/html/tmp/ -vvv
       warden env exec php-fpm mv /var/www/html/tmp/* /var/www/html/
       warden env exec php-fpm rm -rf /var/www/html/tmp/
       warden env exec php-fpm composer install -vvv
