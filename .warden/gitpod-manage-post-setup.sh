@@ -20,6 +20,7 @@ if [ -f "$file_path" ]; then
     warden env exec php-fpm php bin/magento cache:enable
     warden env exec php-fpm php bin/magento d:m:se developer
     warden env exec php-fpm php bin/magento setup:perf:generate-fixtures /var/www/html/setup/performance-toolkit/profiles/ce/small.xml
+    warden env exec php-fpm php bin/magento cache:flush
 else
     echo "File $file_path not found."
     exit 1
