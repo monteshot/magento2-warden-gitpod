@@ -8,7 +8,7 @@ if [[ $answer == "y" || $answer == "Y" ]]; then
     echo "Installing the Magento to the DB..."
     clear_url=$(gp url | awk -F"//" {'print $2'}) && url=$url;
     warden env exec -e $clear_url="$clear_url" php-fpm bin/magento setup:install \
-                            --base-url=https://$clear_url \
+                            --base-url=https://443-$clear_url \
                             --db-host=db \
                             --db-name=magento \
                             --db-user=magento \
@@ -42,8 +42,8 @@ if [[ $answer == "y" || $answer == "Y" ]]; then
                             --page-cache-redis-db=1 \
                             --page-cache-redis-port=6379
 
-   warden env exec php-fpm bin/magento config:set --lock-env web/unsecure/base_url "https://${clear_url}/"
-   warden env exec php-fpm bin/magento config:set --lock-env web/secure/base_url "https://${clear_url}/"
+   warden env exec php-fpm bin/magento config:set --lock-env web/unsecure/base_url "https://443-${clear_url}/"
+   warden env exec php-fpm bin/magento config:set --lock-env web/secure/base_url "https://443-${clear_url}/"
    warden env exec php-fpm bin/magento config:set --lock-env web/secure/offloader_header X-Forwarded-Proto
    warden env exec php-fpm bin/magento config:set --lock-env web/secure/use_in_frontend 1
    warden env exec php-fpm bin/magento config:set --lock-env web/secure/use_in_adminhtml 1
