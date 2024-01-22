@@ -28,7 +28,7 @@ services:
       - traefik.http.routers.${WARDEN_ENV_NAME}-nginx.rule=
         HostRegexp(`{subdomain:.+}.${TRAEFIK_DOMAIN}`)
         || Host(`${TRAEFIK_DOMAIN}`)
-        || Host(`clear.magento2.loc)
+        || Host(`clear.magento2.loc`)
         || (Host(`443-${CLEAR_URL:-clear.magento2.loc}`)&&PathPrefix(`/`))
       # Вирубаємо tls для контейнера
       - "traefik.http.routers.${WARDEN_ENV_NAME}-nginx.tls=true"
