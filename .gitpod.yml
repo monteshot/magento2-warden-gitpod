@@ -25,10 +25,10 @@ tasks:
       bash $GITPOD_REPO_ROOTS/.warden/gitpod-manage-warden.sh
       bash $GITPOD_REPO_ROOTS/.warden/gitpod-manage-traefik.sh
       bash $GITPOD_REPO_ROOTS/.warden/gitpod-manage-mailhog.sh
-      warden env exec -e COMPOSER_AUTH="$AUTH_JSON" php-fpm ./composer.phar create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=$MAGENTO_VERSION $GITPOD_REPO_ROOTS/tmp/
+      warden env exec -e COMPOSER_AUTH="$AUTH_JSON" php-fpm composer create-project --repository-url=https://repo.magento.com/ magento/project-enterprise-edition=$MAGENTO_VERSION $GITPOD_REPO_ROOTS/tmp/
       warden env exec php-fpm mv $GITPOD_REPO_ROOTS/tmp/* $GITPOD_REPO_ROOTS/
       warden env exec php-fpm rm -rf $GITPOD_REPO_ROOTS/tmp/
-      warden env exec -e COMPOSER_AUTH="$AUTH_JSON" php-fpm ./composer.phar install -vvv
+      warden env exec -e COMPOSER_AUTH="$AUTH_JSON" php-fpm composer install -vvv
       sudo chown -R gitpod:gitpod $GITPOD_REPO_ROOTS
       bash $GITPOD_REPO_ROOTS/.warden/gitpod-manage-db-install.sh
       bash $GITPOD_REPO_ROOTS/.warden/gitpod-manage-post-setup.sh
